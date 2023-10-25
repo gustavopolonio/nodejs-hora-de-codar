@@ -1,0 +1,11 @@
+<h1>Content</h1>
+{{#if isApproved}}
+  <b>Você foi aprovado!!!!!</b>
+{{else}}
+  <b>Reprovado :(</b>
+{{/if}}
+<p>Nome: {{user.name}} {{user.surname}}</p>
+<p>{{text}}</p>
+{{#if isAuth}}
+  <a href="/dashboard">Go to Dashboard</a>
+{{/if}}
