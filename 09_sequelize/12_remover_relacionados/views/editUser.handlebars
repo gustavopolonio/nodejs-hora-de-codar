@@ -1,0 +1,52 @@
+<h1>Edit User: {{user.name}}</h1>
+<form action="/users/update" method="POST">
+  <input type="hidden" name="id" value="{{user.id}}" />
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" placeholder="Type the username" value="{{user.name}}" />
+  </div>
+  <div>
+    <label for="occupation">Occupation</label>
+    <input type="text" name="occupation" placeholder="Type the occupation" value="{{user.occupation}}" />
+  </div>
+  <div>
+    <label for="newsletter">Newsletter</label>
+    {{#if user.newsletter}}
+      <input type="checkbox" name="newsletter" checked />
+    {{else}}
+      <input type="checkbox" name="newsletter" />
+    {{/if}}
+  </div>
+  <div>
+    <input type="submit" value="Edit">
+  </div>
+</form>
+
+<h1>Address</h1>
+<form action="/address/create" method="POST">
+  <input type="hidden" name="userId" value="{{user.id}}" />
+  <div>
+    <label for="street">Street</label>
+    <input type="text" name="street" placeholder="Type the street" />
+  </div>
+  <div>
+    <label for="number">Number</label>
+    <input type="text" name="number" placeholder="Type the number" />
+  </div>
+  <div>
+    <label for="city">City</label>
+    <input type="text" name="city" placeholder="Type the city" />
+  </div>
+  <input type="submit" value="Edit address">
+</form>
+
+<div>
+  {{#each user.addresses}}
+    <p># - {{this.id}} - {{this.street}} - {{this.number}} - {{this.city}}</p>
+    <form action="/address/delete" method="POST">
+      <input type="hidden" name="id" value="{{this.id}}" />
+      <input type="hidden" name="userId" value="{{this.userId}}" />
+      <input type="submit" value="Delete address" />
+    </form>
+  {{/each}}
+</div>

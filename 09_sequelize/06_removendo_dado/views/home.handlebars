@@ -1,0 +1,13 @@
+<h1>Users:</h1>
+<div>
+  {{#each users}}
+    <h2>{{this.name}}</h2>
+    <p>{{this.occupation}}</p>
+    <div>
+      <a href="/users/{{this.id}}">See details</a>
+      <form action="/users/delete/{{this.id}}" method="POST">
+        <input type="submit" value="Delete user">
+      </form>
+    </div>
+  {{/each}}
+</div>
