@@ -35,6 +35,19 @@ export default class TaskController {
     res.render('tasks/edit', { task })
   }
 
+  static async updateTaskPost(req, res) {
+    const { id, title, description } = req.body
+
+    await Task.update({
+      title,
+      description
+    }, {
+      where: { id }
+    })
+
+    res.redirect('/tasks')
+  }
+
   static async deleteTask(req, res) {
     const { id } = req.body
     
