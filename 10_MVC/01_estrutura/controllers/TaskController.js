@@ -21,4 +21,16 @@ export default class TaskController {
     
     res.render('tasks/all', { tasks })
   }
+
+  static async deleteTask(req, res) {
+    const { id } = req.body
+    
+    await Task.destroy({
+      where: {
+        id
+      }
+    })
+
+    res.redirect('/tasks')
+  }
 }
