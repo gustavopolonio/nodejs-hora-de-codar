@@ -48,6 +48,18 @@ export default class TaskController {
     res.redirect('/tasks')
   }
 
+  static async toggleTaskStatus(req, res) {
+    const { id, status } = req.body
+    
+    await Task.update({
+      done: status === '0' ? true : false
+    }, {
+      where: { id }
+    })
+
+    res.redirect('/tasks')
+  }
+
   static async deleteTask(req, res) {
     const { id } = req.body
     
