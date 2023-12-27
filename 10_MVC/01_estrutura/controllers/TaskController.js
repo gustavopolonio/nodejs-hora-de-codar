@@ -22,6 +22,19 @@ export default class TaskController {
     res.render('tasks/all', { tasks })
   }
 
+  static async updateTask(req, res) {
+    const { id } = req.params
+
+    const task = await Task.findOne({
+      where: {
+        id
+      },
+      raw: true
+    })
+
+    res.render('tasks/edit', { task })
+  }
+
   static async deleteTask(req, res) {
     const { id } = req.body
     
