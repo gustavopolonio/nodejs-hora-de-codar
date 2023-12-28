@@ -7,6 +7,8 @@ import flash from 'express-flash'
 import { sequelize } from './db/conn.js'
 import { Thought } from './models/Thought.js'
 import { User } from './models/User.js'
+import { thoughtsRouter } from './routes/thoughtsRoutes.js'
+import { ThoughtController } from './controllers/ThoughtController.js'
 
 const app = express()
 const FileStore = fileStore(session)
@@ -52,6 +54,11 @@ app.use((req, res, next) => {
 
   next()
 })
+
+
+app.use('/thoughts', thoughtsRouter)
+
+app.get('/', ThoughtController.showThoughts)
 
 sequelize
   .sync()
