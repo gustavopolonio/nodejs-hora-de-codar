@@ -7,7 +7,8 @@ import flash from 'express-flash'
 import { sequelize } from './db/conn.js'
 import { Thought } from './models/Thought.js'
 import { User } from './models/User.js'
-import { thoughtsRouter } from './routes/thoughtsRoutes.js'
+import { thoughtsRoutes } from './routes/thoughtsRoutes.js'
+import { authRoutes } from './routes/authRoutes.js'
 import { ThoughtController } from './controllers/ThoughtController.js'
 
 const app = express()
@@ -56,7 +57,8 @@ app.use((req, res, next) => {
 })
 
 
-app.use('/thoughts', thoughtsRouter)
+app.use('/thoughts', thoughtsRoutes)
+app.use('/', authRoutes)
 
 app.get('/', ThoughtController.showThoughts)
 

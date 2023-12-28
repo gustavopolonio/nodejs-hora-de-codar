@@ -6,4 +6,4 @@ const thoughtsRouter = express.Router()
 
 thoughtsRouter.get('/', ThoughtController.showThoughts)
 
-export { thoughtsRouter }
+export { thoughtsRouter as thoughtsRoutes }
