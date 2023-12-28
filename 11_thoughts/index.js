@@ -5,6 +5,8 @@ import fileStore from 'session-file-store'
 import flash from 'express-flash'
 
 import { sequelize } from './db/conn.js'
+import { Thought } from './models/Thought.js'
+import { User } from './models/User.js'
 
 const app = express()
 const FileStore = fileStore(session)
