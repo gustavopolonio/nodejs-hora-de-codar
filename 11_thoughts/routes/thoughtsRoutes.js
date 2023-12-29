@@ -5,6 +5,7 @@ import { checkAuth } from '../helpers/auth.js'
 
 const thoughtsRouter = express.Router()
 
+thoughtsRouter.get('/create', checkAuth, ThoughtController.createThought)
 thoughtsRouter.get('/dashboard', checkAuth, ThoughtController.dashboard)
 thoughtsRouter.get('/', ThoughtController.showThoughts)
 

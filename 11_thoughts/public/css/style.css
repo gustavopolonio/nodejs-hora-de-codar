@@ -128,6 +128,24 @@ form input[type="submit"]:hover,
   color: var(--white);
 }
 
+.thought-form-container {
+  width: 40%;
+}
+
+.thought-form-container a {
+  color: var(--secondary-color);
+}
+
+.thought-form-container a:hover {
+  text-decoration: underline;
+}
+
+.thought-form-container h1 {
+  margin: 30px 0;
+  border-left: 4px solid var(--secondary-color);
+  padding: 8px;
+}
+
 
 footer {
   height: 80px;
