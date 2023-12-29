@@ -41,6 +41,10 @@ const AuthController = class AuthController {
       console.log(e)
     }
   }
+
+  static logout(req, res) {
+    req.session.destroy(() => res.redirect('/login'))
+  }
 }
 
 export { AuthController }
