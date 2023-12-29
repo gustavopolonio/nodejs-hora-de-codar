@@ -100,6 +100,7 @@ header nav ul li a:hover {
 
 .form-control input,
 .form-control textarea {
+  color: var(--white);
   background-color: transparent;
   padding: 8px;
   border-radius: 4px;
