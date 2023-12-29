@@ -49,8 +49,6 @@ app.use(flash())
 
 // set user session data from request to response
 app.use((req, res, next) => {
-  console.log('session', req.session)
-  console.log('ID', req.session.userId)
   if (req.session.userId) {
     res.locals.session = req.session
   }
