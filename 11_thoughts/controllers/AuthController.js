@@ -7,6 +7,31 @@ const AuthController = class AuthController {
     res.render('auth/login')
   }
 
+  static async loginPost(req, res) {
+    const { email, password } = req.body
+
+    // Check if user already exists
+    const user = await User.findOne({ where: { email } })
+    if (!user) {
+      req.flash('message', 'Error: User not found!')
+      res.render('auth/login')
+      return
+    }
+
+    // Check if password match
+    const isPasswordSimilar = bcrypt.compareSync(password, user.password)
+    if (!isPasswordSimilar) {
+      req.flash('message', 'Error: Invalid password')
+      res.render('auth/login')
+      return
+    }
+
+    // Sucessful login
+    req.session.userId = user.id
+    req.flash('message', `Welcome again, ${user.name}`)
+    req.session.save(() => res.redirect('/'))
+  }
+
   static register(req, res) {
     res.render('auth/register')
   }
