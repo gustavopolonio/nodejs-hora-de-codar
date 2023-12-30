@@ -3,5 +3,10 @@
     <h2>Dashboard</h2>
     <a href="/thoughts/create" class="btn">Create thought</a>
   </div>
-  <h3>Your thoughts</h3> 
+  <h3>Your thoughts</h3>
+  <ul>
+    {{#each thoughts}}
+      <li>{{this.title}}</li>
+    {{/each}}
+  </ul>
 </div>

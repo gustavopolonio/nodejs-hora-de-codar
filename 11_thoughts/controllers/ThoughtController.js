@@ -1,12 +1,25 @@
 import { Thought } from '../models/Thought.js'
+import { User } from '../models/User.js'
 
 const ThoughtController = class ThoughtController {
   static showThoughts(req, res) {
     res.render('thoughts/home')
   }
 
-  static dashboard(req, res) {
-    res.render('thoughts/dashboard')
+  static async dashboard(req, res) {
+    const user = await User.findOne({
+      where: {
+        id: req.session.userId
+      },
+      include: Thought,
+      plain: true
+    })
+
+    if (!user) res.redirect('/login')
+
+    const thoughts = user.Thoughts.map(thought => thought.dataValues)
+
+    res.render('thoughts/dashboard', { thoughts })
   }
 
   static createThought(req, res) {
