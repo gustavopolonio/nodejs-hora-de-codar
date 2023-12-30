@@ -8,6 +8,7 @@ const thoughtsRouter = express.Router()
 thoughtsRouter.get('/create', checkAuth, ThoughtController.createThought)
 thoughtsRouter.post('/create', checkAuth, ThoughtController.createThoughtPost)
 thoughtsRouter.get('/dashboard', checkAuth, ThoughtController.dashboard)
+thoughtsRouter.post('/remove', checkAuth, ThoughtController.removeThought)
 thoughtsRouter.get('/', ThoughtController.showThoughts)
 
 export { thoughtsRouter as thoughtsRoutes }

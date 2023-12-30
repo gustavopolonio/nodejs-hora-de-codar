@@ -37,6 +37,24 @@ const ThoughtController = class ThoughtController {
       console.log(`Error creating thought: ${err}`)
     }
   }
+
+  static async removeThought(req, res) {
+    const { id } = req.body
+
+    try {
+      await Thought.destroy({
+        where: {
+          id,
+          UserId: req.session.userId
+        }
+      })
+  
+      req.flash('message', 'Thought removed!')
+      req.session.save(() => res.redirect('/thoughts/dashboard'))
+    } catch(err) {
+      console.log(`Error deleting thought: ${err}`)
+    }
+  }
 }
 
 export { ThoughtController }
