@@ -2,8 +2,13 @@ import { Thought } from '../models/Thought.js'
 import { User } from '../models/User.js'
 
 const ThoughtController = class ThoughtController {
-  static showThoughts(req, res) {
-    res.render('thoughts/home')
+  static async showThoughts(req, res) {
+    const thoughtsData = await Thought.findAll({
+      include: User
+    })
+    const thoughts = thoughtsData.map(thought => thought.get({ plain: true }))
+
+    res.render('thoughts/home', { thoughts })
   }
 
   static async dashboard(req, res) {
