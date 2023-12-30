@@ -19,7 +19,7 @@ const ThoughtController = class ThoughtController {
 
     const thoughts = user.Thoughts.map(thought => thought.dataValues)
 
-    res.render('thoughts/dashboard', { thoughts })
+    res.render('thoughts/dashboard', { thoughts, haveThoughts: thoughts.length })
   }
 
   static createThought(req, res) {

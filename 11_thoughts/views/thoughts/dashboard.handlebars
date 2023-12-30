@@ -17,5 +17,8 @@
         </span>
       </li>
     {{/each}}
+    {{#unless haveThoughts}}
+      <p>You don't have any thoughts! Write your first one <a href="/thoughts/create">here!</a></p>
+    {{/unless}}
   </ul>
 </div>
