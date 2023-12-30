@@ -38,6 +38,38 @@ const ThoughtController = class ThoughtController {
     }
   }
 
+  static async updateThought(req, res) {
+    const { id } = req.params
+
+    const thought = await Thought.findOne({
+      where: {
+        id
+      },
+      raw: true
+    })
+
+    res.render('thoughts/edit', { thought })
+  }
+
+  static async updateThoughtPost(req, res) {
+    const { id, title } = req.body
+
+    try {
+      await Thought.update({
+        title
+      }, {
+        where: {
+          id
+        }
+      })
+
+      req.flash('message', 'Thought edited!')
+      req.session.save(() => res.redirect('/thoughts/dashboard'))
+    } catch(err) {
+      console.log(`Error editing thought: ${err}`)
+    }
+  }
+
   static async removeThought(req, res) {
     const { id } = req.body
 
