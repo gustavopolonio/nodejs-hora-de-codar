@@ -11,11 +11,16 @@ const ThoughtController = class ThoughtController {
       userSearch = req.query.search
     }
 
+    let order = 'DESC'
+
+    if (req.query.order === 'asc') order = 'ASC'
+
     const thoughtsData = await Thought.findAll({
       include: User,
       where: {
         title: { [Op.like]: `%${userSearch}%` }
-      }
+      },
+      order: [['createdAt', order]]
     })
     const thoughts = thoughtsData.map(thought => thought.get({ plain: true }))
 
