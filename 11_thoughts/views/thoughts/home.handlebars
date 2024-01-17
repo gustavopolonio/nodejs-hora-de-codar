@@ -1,5 +1,9 @@
 <div class="home-header">
-  <h1>All Thoughts</h1>
+  {{#if userSearch}}
+    <h1>We have {{thoughtsQty}} thoughts for <span>{{userSearch}}</span></h1>
+  {{else}}
+    <h1>All Thoughts</h1>
+  {{/if}}
 
   <form action="" method="">
     <input type="text" name="search" value="" placeholder="Search by..." />
