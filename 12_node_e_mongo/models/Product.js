@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb'
+
 import { mongoClient } from '../db/conn.js'
 
 export class Product {
@@ -14,6 +16,14 @@ export class Product {
       imageUrl: this.imageUrl,
       price: this.price,
       description: this.description
+    })
+
+    return product
+  }
+
+  static async getProductById(id) {
+    const product = await mongoClient.db('mongo_test').collection('products').findOne({
+      _id: new ObjectId(id)
     })
 
     return product

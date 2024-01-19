@@ -6,6 +6,12 @@ export const ProductController = class ProductController {
     res.render('products/all', { products })
   }
 
+  static async showProduct(req, res) {
+    const { id } = req.params
+    const product = await Product.getProductById(id)
+    res.render('products/product', { product })
+  }
+
   static createProduct(req, res) {
     res.render('products/create')
   }
