@@ -1,7 +1,7 @@
 import { mongoClient } from '../db/conn.js'
 
 export class Product {
-  constructor(name = undefined, imageUrl = undefined, price = undefined, description = undefined) {
+  constructor(name, imageUrl, price, description) {
     this.name = name
     this.imageUrl = imageUrl
     this.price = price
@@ -19,7 +19,7 @@ export class Product {
     return product
   }
 
-  getAllProducts() {
+  static getAllProducts() {
     const products = mongoClient.db('mongo_test').collection('products').find().toArray()
     return products
   }

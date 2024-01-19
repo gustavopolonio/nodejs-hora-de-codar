@@ -2,8 +2,7 @@ import { Product } from '../models/Product.js'
 
 export const ProductController = class ProductController {
   static async showProducts(req, res) {
-    const product = new Product()
-    const products = await product.getAllProducts()
+    const products = await Product.getAllProducts()
     res.render('products/all', { products })
   }
 
