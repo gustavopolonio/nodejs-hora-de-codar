@@ -33,4 +33,12 @@ export class Product {
     const products = mongoClient.db('mongo_test').collection('products').find().toArray()
     return products
   }
+
+  static async removeProductById(id) {
+    const deletedProduct = await mongoClient.db('mongo_test').collection('products').deleteOne({
+      _id: new ObjectId(id)
+    })
+
+    return deletedProduct
+  }
 }

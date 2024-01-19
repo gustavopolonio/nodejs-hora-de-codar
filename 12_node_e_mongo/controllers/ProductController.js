@@ -24,4 +24,10 @@ export const ProductController = class ProductController {
 
     res.redirect('/products')
   }
+
+  static async removeProduct(req, res) {
+    const { id } = req.params
+    await Product.removeProductById(id)
+    res.redirect('/products')
+  }
 }
