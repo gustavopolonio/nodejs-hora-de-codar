@@ -34,6 +34,16 @@ export class Product {
     return products
   }
 
+  async editProductById(id) {
+    const product = await mongoClient.db('mongo_test').collection('products').updateOne({
+      _id: new ObjectId(id)
+    }, {
+      $set: this
+    })
+
+    return product
+  }
+
   static async removeProductById(id) {
     const deletedProduct = await mongoClient.db('mongo_test').collection('products').deleteOne({
       _id: new ObjectId(id)
