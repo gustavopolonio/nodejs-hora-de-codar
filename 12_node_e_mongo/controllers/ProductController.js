@@ -1,21 +1,22 @@
 import { Product } from '../models/Product.js'
 
 export const ProductController = class ProductController {
-  static showProducts(req, res) {
-    res.render('products/all')
+  static async showProducts(req, res) {
+    const product = new Product()
+    const products = await product.getAllProducts()
+    res.render('products/all', { products })
   }
 
   static createProduct(req, res) {
     res.render('products/create')
   }
 
-  static createProductPost(req, res) {
-    const { name, price, description } = req.body
+  static async createProductPost(req, res) {
+    const { name, imageUrl, price, description } = req.body
 
-    const product = new Product(name, price, description)
-    product.save()
-    console.log(`Product saved: ${product}`)
-    
+    const product = new Product(name, imageUrl, price, description)
+    await product.save()
+
     res.redirect('/products')
   }
 }
