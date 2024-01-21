@@ -6,7 +6,7 @@ export const productsRouter = express.Router()
 
 productsRouter.post('/create', ProductController.createProductPost)
 productsRouter.get('/create', ProductController.createProduct)
-// productsRouter.post('/remove/:id', ProductController.removeProduct)
+productsRouter.post('/remove/:id', ProductController.removeProduct)
 productsRouter.post('/edit/:id', ProductController.editProductPost)
 productsRouter.get('/edit/:id', ProductController.editProduct)
 productsRouter.get('/:id', ProductController.showProduct)
