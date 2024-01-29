@@ -1,6 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 
+import { mongoose } from './db/conn.js'
+
 import { router as UserRoutes } from './routes/UserRoutes.js'
 
 const app = express()
